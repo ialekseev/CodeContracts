@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeContracts", "main\CodeContracts\CodeContracts.csproj", "{DBCB564F-73D4-4056-ADA2-BE5900E2FC2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D9169FE8-B70B-4415-AA4A-89CBCD26E907}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBCB564F-73D4-4056-ADA2-BE5900E2FC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBCB564F-73D4-4056-ADA2-BE5900E2FC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBCB564F-73D4-4056-ADA2-BE5900E2FC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBCB564F-73D4-4056-ADA2-BE5900E2FC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
