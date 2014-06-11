@@ -17,46 +17,50 @@ namespace CodeContracts
         /// </summary>
         /// <typeparam name="T">The type of the parameter</typeparam>
         /// <param name="value">The value.</param>
-        /// <param name="parameterName">Name of the parameter.</param>
-        /// <returns>The tested value, guaranteed to not be null.</returns>
+        /// <param name="parameterName">Name of the parameter.</param> 
+        /// <param name="message">The message to include with the exception.</param>               
         [Pure, DebuggerStepThrough]
-        public static void NotNull<T>(T value, string parameterName) where T : class
+        public static void NotNull<T>(T value, string parameterName, string message = null) where T : class
         {
             if (value == null)
             {
-                throw new ArgumentNullException(parameterName);
+                throw new ArgumentNullException(parameterName, message ?? "Null value is not allowed");
             }
 
             Contract.EndContractBlock();
         }
-
+        
         /// <summary>
         /// Validates that a parameter is not null or empty.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="message">The message to include with the exception.</param>
         [Pure, DebuggerStepThrough]
-        public static void NotNullOrEmpty(string value, string parameterName)
+        public static void NotNullOrEmpty(string value, string parameterName, string message = null)
         {
-            NotNull(value, parameterName);
-            True(value.Length > 0, parameterName, "The empty string is not allowed.");
+            NotNull(value, parameterName, message);
+            True(value.Length > 0, parameterName, message ?? "The empty string is not allowed.");
+            
             Contract.EndContractBlock();
         }
-
+        
         /// <summary>
         /// Validates that an array is not null or empty.
         /// </summary>
         /// <typeparam name="T">The type of the elements in the sequence.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="message">The message to include with the exception.</param>
         [Pure, DebuggerStepThrough]
-        public static void NotNullOrEmpty<T>(IEnumerable<T> value, string parameterName)
+        public static void NotNullOrEmpty<T>(IEnumerable<T> value, string parameterName, string message = null)
         {
-            NotNull(value, parameterName);
-            True(value.Any(), parameterName, "The argument has an unexpected value.");
+            NotNull(value, parameterName, message);
+            True(value.Any(), parameterName, message ?? "The argument has an unexpected value.");
+            
             Contract.EndContractBlock();
         }
-
+        
         /// <summary>
         /// Validates that an argument is either null or is a sequence with no null elements.
         /// </summary>
@@ -99,11 +103,27 @@ namespace CodeContracts
         /// <param name="parameterName">Name of the parameter.</param>
         /// <param name="message">The message to include with the exception.</param>
         [Pure, DebuggerStepThrough]
-        public static void True(bool condition, string parameterName = null, string message = null)
+        public static void True(bool condition, string parameterName, string message)
         {
             if (!condition)
             {
                 throw new ArgumentException(message ?? "The argument has an unexpected value.", parameterName);
+            }
+
+            Contract.EndContractBlock();
+        }
+
+        /// <summary>
+        /// Validates some expression describing the acceptable condition for an argument evaluates to true.
+        /// </summary>
+        /// <param name="condition">The expression that must evaluate to true to avoid an <see cref="ArgumentException"/>.</param>        
+        /// <param name="message">The message to include with the exception.</param>
+        [Pure, DebuggerStepThrough]
+        public static void True(bool condition, string message)
+        {
+            if (!condition)
+            {
+                throw new ArgumentException(message);
             }
 
             Contract.EndContractBlock();
