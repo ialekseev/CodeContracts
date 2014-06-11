@@ -107,7 +107,7 @@ namespace CodeContracts
         {
             if (!condition)
             {
-                throw new ArgumentException(message ?? "The argument has an unexpected value.", parameterName);
+                throw new ArgumentException(message, parameterName);
             }
 
             Contract.EndContractBlock();
