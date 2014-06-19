@@ -80,6 +80,38 @@ namespace CodeContracts
         }
 
         /// <summary>
+        /// Validates that a string parameter has length less than or equal to provided value
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="length">The length.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="message">The message to include with the exception.</param>
+        [Pure, DebuggerStepThrough]
+        public static void LengthLessOrEqual(string value, int length, string parameterName, string message = null)
+        {
+            NotNull(value, parameterName, message);
+            True(value.Length <= length, parameterName, message ?? "The string length should be less than or equal to "+ length);
+
+            Contract.EndContractBlock();
+        }
+
+        /// <summary>
+        /// Validates that a string parameter has length less than provided value
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="length">The length.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="message">The message to include with the exception.</param>
+        [Pure, DebuggerStepThrough]
+        public static void LengthLessThan(string value, int length, string parameterName, string message = null)
+        {
+            NotNull(value, parameterName, message);
+            True(value.Length < length, parameterName, message ?? "The string length should be less than " + length);
+
+            Contract.EndContractBlock();
+        }
+
+        /// <summary>
         /// Validates some expression describing the acceptable range for an argument evaluates to true.
         /// </summary>
         /// <param name="condition">The expression that must evaluate to true to avoid an <see cref="ArgumentOutOfRangeException"/>.</param>
