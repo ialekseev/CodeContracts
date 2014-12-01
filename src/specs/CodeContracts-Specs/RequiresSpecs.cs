@@ -112,7 +112,70 @@ namespace CodeContracts.Specs
             {
                 Requires.LengthGreaterOrEqual("test", 5, "param");
             }
-        }        
+        }
+
+        [TestFixture]
+        public class when_requires_that_in_range_when_condition_is_false
+        {
+            [Test]
+            [ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void should_throw()
+            {
+                Requires.InRange(false, "par");
+            }
+        }
+
+        [TestFixture]
+        public class when_requires_that_in_range_when_condition_is_true
+        {
+            [Test]            
+            public void should_not_throw()
+            {
+                Requires.InRange(true, "par");
+            }
+        }
+
+        [TestFixture]
+        public class when_requires_that_condition_is_true_providing_false_value
+        {
+            [Test]
+            [ExpectedException(typeof(ArgumentException))]
+            public void should_throw()
+            {
+                Requires.True(false, "par", "message");
+            }
+        }
+
+        [TestFixture]
+        public class when_requires_that_condition_is_true_providing_true_value
+        {
+            [Test]
+            public void should_not_throw()
+            {
+                Requires.True(true, "par", "message");
+            }
+        }
+        
+        [TestFixture]
+        public class when_requires_that_condition_is_true_providing_false_value2
+        {
+            [Test]
+            [ExpectedException(typeof(ArgumentException))]
+            public void should_throw()
+            {
+                Requires.True(false, "par");
+            }
+        }
+
+        [TestFixture]
+        public class when_requires_that_condition_is_true_providing_true_value2
+        {
+            [Test]            
+            public void should_not_throw()
+            {
+                Requires.True(true, "par");
+            }
+        }
     }
 }
 
