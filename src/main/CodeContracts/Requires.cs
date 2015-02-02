@@ -313,5 +313,34 @@ namespace CodeContracts
         {
             throw new ArgumentException(message, parameterName);
         }
+
+				/// <summary>
+				/// Throws an <see cref="ArgumentException"/>
+				/// </summary>
+				/// <param name="value">The object to be tested.</param>
+				/// <param name="parameterName">Name of the parameter.</param>
+				/// <param name="unformattedMessage">The message of the exception to be thrown should the requirement fail.</param>
+				/// <param name="args">Arguments to be passed to the formatting method when formatting the exception message.</param>
+				[Pure, DebuggerStepThrough]
+				public static void NotDefault<T>(T value, string parameterName)
+				{
+					NotDefault(value, parameterName, "The parameter '{0}' was passed in with a default value, was expected to be nondefault.", parameterName);
+				}
+
+			/// <summary>
+			/// Throws an <see cref="ArgumentException"/>
+			/// </summary>
+			/// <param name="value">The object to be tested.</param>
+			/// <param name="parameterName">Name of the parameter.</param>
+			/// <param name="unformattedMessage">The message of the exception to be thrown should the requirement fail.</param>
+			/// <param name="args">Arguments to be passed to the formatting method when formatting the exception message.</param>
+			[Pure, DebuggerStepThrough]
+	    public static void NotDefault<T>(T value, string parameterName, string unformattedMessage, params object[] args)
+	    {
+				if (value == null || value.Equals(default(T)))
+				{
+					throw new ArgumentException(String.Format(unformattedMessage, args));
+				}
+	    }
     }
 }
