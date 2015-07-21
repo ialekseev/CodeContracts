@@ -176,6 +176,48 @@ namespace CodeContracts.Specs
                 Requires.True(true, "par");
             }
         }
+
+	    [TestFixture]
+	    public class when_requires_that_not_default_providing_default_value_type
+	    {
+		    [Test]
+				[ExpectedException(typeof(ArgumentException))]
+		    public void should_throw()
+		    {
+			    Requires.NotDefault(default(int), "value", "the parameter '{0}' is default when it should not be", "value");
+		    }
+	    }
+
+	    [TestFixture]
+	    public class when_requires_that_not_default_providing_default_reference_type
+	    {
+		    [Test]
+		    [ExpectedException(typeof(ArgumentException))]
+		    public void should_throw()
+		    {
+			    Requires.NotDefault(default(string), "value");
+		    }
+	    }
+
+			[TestFixture]
+	    public class when_requires_that_not_default_providing_nondefault_value_type
+	    {
+		    [Test]
+		    public void should_not_throw()
+		    {
+			    Requires.NotDefault(1, "value");
+		    }
+	    }
+
+	    [TestFixture]
+	    public class when_requires_that_not_default_providing_nondefault_reference_type
+	    {
+		    [Test]
+		    public void should_not_throw()
+		    {
+			    Requires.NotDefault("test", "value");
+		    }
+	    }
     }
 }
 
